@@ -23,10 +23,18 @@ void task()
 	const int N = 4;
 	Human* human = new Human[N];
 	char path[] = "db.bin";
-	cout << endl << endl << "Генерация структуры:" << endl;
+	cout << endl << endl << "Список студеннтов:" << endl;
 	for (size_t i = 0; i < N; i++)
 	{
-		cout << (human[i].Surname = Surname[i])<< "\t" << "Группа: " <<(human[i].Group = 100 + rand()% 7 ) << "\t" <<"Математика: "<< (human[i].Math = 0 + rand() % 100) << "\t" << "Физика: " <<(human[i].Physics = 0 + rand() % 100) << "\t" <<"Химия: " <<(human[i].Chemistry = 0 + rand() % 100) << "\t" << "Пенсия: " << (human[i].Cash = 200 +rand()%2000) << endl;
+		cout << (human[i].Surname = Surname[i]) << "\t" << "Группа: " << (human[i].Group = 100 + rand() % 7) << "\t" << "Математика: " << (human[i].Math = 0 + rand() % 100) << "\t" << "Физика: " << (human[i].Physics = 0 + rand() % 100) << "\t" << "Химия: " << (human[i].Chemistry = 0 + rand() % 100) << "\t" << "Стипендия: ";
+		if (human[i].Math !=0 && human[i].Physics != 0 && human[i].Chemistry != 0)
+		{
+			cout <<  (human[i].Cash = 1000 + rand() % 500) << endl;
+		}
+		else
+		{
+			cout << "Отсутсвует" << endl;
+		}
 	}
 
 	FILE* f_out, * f_in;
@@ -37,14 +45,22 @@ void task()
 	delete[] human;
 	human = nullptr;
 
-	cout << endl << endl << "Считывание из файла: " << endl;
+	cout << endl << endl << "Все оценки положительные: " << endl;
 	Human* restoredDB = new Human[N];
 	f_in = fopen(path, "rb");
 	fread(restoredDB, sizeof(Human), N, f_in);
 	fclose(f_in);
+	
 	for (size_t i = 0; i < N; i++)
 	{
-		cout << restoredDB[i].Surname << "\t" << "Группа: " << restoredDB[i].Group << "\t" << "Математика: " << restoredDB[i].Math << "\t" << "Физика: " << restoredDB[i].Physics << "\t" << "Химия: " << restoredDB[i].Chemistry << "\t" << "Пенсия: " << restoredDB[i].Cash << endl;
+		if (restoredDB[i].Math != 0 && restoredDB[i].Physics!=0 && restoredDB[i].Chemistry != 0)
+		{
+			
+			cout << restoredDB[i].Surname << "\t" << "Группа: " << restoredDB[i].Group << "\t" << "Математика: " << restoredDB[i].Math << "\t" << "Физика: " << restoredDB[i].Physics << "\t" << "Химия: " << restoredDB[i].Chemistry << "\t" << "Стипендия: "<< restoredDB[i].Cash	 << endl; ;
+
+		}
+		
+		
 	}
 }
 
