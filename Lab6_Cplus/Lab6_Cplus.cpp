@@ -8,11 +8,11 @@ using namespace std;
 
 struct Human
 {
-	string Surname;			//Фамилия
+	string Surname;				//Ф.И.О
 	int Group;				//Группа
 	int Math;				//Математика
-	int Physics;			//Физика
-	int Chemistry;			//Химия
+	int Physics;				//Физика
+	int Chemistry;				//Химия
 	int Cash;				//Пенсия
 };
 
